@@ -1,30 +1,51 @@
 todos = []
 stop = False
 
+
 def get_todos():
     global todos
     return todos
 
+
 def add_one_task(title):
     # your code here
+    global todos
+    todos.append(title)
     pass
+
 
 def print_list():
     global todos
-    pass
+    print(todos)
+
 
 def delete_task(number_to_delete):
     # your code here
+    global todos
+    myIndex = int(number_to_delete)-1
+    del todos[myIndex]
     pass
+
 
 def save_todos():
     # your code here
-    pass
+    global todos
+    f = open('todos.csv', 'w', encoding="utf-8")
+    for todo in todos:
+        f.write(todo + '\n')
+    f.close()
 
-    
+
 def load_todos():
     # your code here
-    pass
+    global todos
+    f = open('todos.csv', 'r', encoding="utf-8")
+    linesInTheFile = f.readlines()
+    todos.clear()
+    for line in linesInTheFile:
+        todos.append(line.strip('\n'))
+    f.close()
+
 
 # Below this code will only run if the entry file running was app.py
 if __name__ == '__main__':
